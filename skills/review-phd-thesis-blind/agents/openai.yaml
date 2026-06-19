@@ -1,0 +1,4 @@
+interface:
+  display_name: "博士论文模拟盲审"
+  short_description: "面向博士论文模拟盲审、分项评分与答辩资格判定流程工具"
+  default_prompt: "Use $review-phd-thesis-blind to produce a simulated blind-review report for this doctoral dissertation."

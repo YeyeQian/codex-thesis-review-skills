@@ -1,0 +1,4 @@
+interface:
+  display_name: "博士论文整体性审查"
+  short_description: "盲审前分层或多层检查论文主线、整体性与核心指标"
+  default_prompt: "Use $review-thesis-integrity to review one or explicitly requested multiple layers of my doctoral thesis before blind review."
