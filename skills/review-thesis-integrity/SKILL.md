@@ -1,11 +1,11 @@
 ---
 name: review-thesis-integrity
-description: Review one layer, or explicitly requested multiple layers, of a doctoral dissertation before blind review, especially to check whether the thesis reads as an integrated doctoral work rather than a stapled set of papers. Use when the user asks for博士论文盲审前审查, 整体性审查, 全层级审查, 多层审查, 摘要/绪论/研究现状/国内外综述/相关工作/章节引言/创新点/章间逻辑/总结章/核心指标一致性检查, or wants to apply a reusable thesis review checklist to thesis text, LaTeX chapters, outlines, abstracts, literature reviews, or revision plans.
+description: 用于博士论文盲审前单层审查或用户明确要求的多层审查，重点判断论文是否像一部整体统一的博士学位论文，而不是若干篇小论文的拼接。适用于用户要求博士论文盲审前审查、整体性审查、全层级审查、多层审查、摘要/绪论/研究现状/国内外综述/相关工作/章节引言/创新点/章间逻辑/总结章/核心指标一致性检查，或希望对论文正文、LaTeX 章节、大纲、摘要、文献综述、修订方案应用可复用论文审查清单的场景。
 ---
 
 # 博士论文整体性审查
 
-## Core Rule
+## 核心规则
 
 单层审查是本技能的基本原子单元。默认每次调用只审查一个层面，不要把所有层面混在一次回答里；只有当用户明确要求全层级审查、多层审查或总览式预检时，才启用多层审查编排模式。
 
@@ -13,7 +13,7 @@ description: Review one layer, or explicitly requested multiple layers, of a doc
 
 盲审匿名性备注：博士学位论文盲审通常要求隐去作者身份，但允许在论文中陈述博士在读期间的论文发表成果、专利、项目或获奖等成果信息。审查时不要把“成果陈述”本身判为匿名性问题；只有当文本直接暴露作者姓名、已发表论文题名、专利题名，或其他可直接识别作者身份的信息时，才将其列为盲审匿名风险。
 
-## Layer Selection
+## 审查层级选择
 
 如果用户指定了层面，直接审查对应层面。如果用户没有指定，先根据输入内容推断；仍不明确时，请用户从下列层面中选择一个。
 
@@ -32,7 +32,7 @@ description: Review one layer, or explicitly requested multiple layers, of a doc
 | L10 | 成文一致审查 | 术语、概念、图表风格、重复背景、学术表达统一性 |
 | L11 | 跨章节指标一致性审查 | 摘要、绪论、技术章、总结中的核心指标、图表数据和推导口径 |
 
-## Review Workflow
+## 审查流程
 
 1. 明确本次审查层面、输入范围和证据来源。
 2. 按对应层面的检查项审查，不要泛泛评价全文。
@@ -44,15 +44,15 @@ description: Review one layer, or explicitly requested multiple layers, of a doc
 5. 如果用户提供的是正文片段，可以给出少量示范性改写；如果用户提供的是全文或章节文件，优先给审查结论和修改清单。
 6. 结尾给出本层通过判断：通过、基本通过但需修改、未通过。
 
-## Multi-Layer Review Orchestration
+## 多层审查编排
 
-当用户明确要求检查多个层面或全部层级时，主 agent 应作为“多层审查协调者”，把多层任务拆成若干单层审查单元，再汇总为一份最终报告。多层编排的目标是提高覆盖面和一致性，不改变“每个审查单元只负责一个层面”的基本原则。
+当用户明确要求检查多个层面或全部层级时，主 Agent 应作为“多层审查协调者”，把多层任务拆成若干单层审查单元，再汇总为一份最终报告。多层编排的目标是提高覆盖面和一致性，不改变“每个审查单元只负责一个层面”的基本原则。
 
 编排规则：
 - 先列出本次需要覆盖的层级集合，如 L0-L11 全部层级，或用户指定的若干层级。
 - 为每个层级建立独立审查任务，任务说明必须包含层级代号、审查名称、输入范围、证据来源和本层输出格式。
-- 如果当前环境支持 subagent，且层级之间可以独立审查，优先按“一层一个 subagent”并行执行；如果层级数量很少、上下文不足或没有可用 subagent，则由主 agent 顺序执行，但仍保持逐层隔离。
-- 每个 subagent 或单层审查单元只判断自己负责的层级，不跨层扩展结论；发现跨层问题时可以记录为“需交由协调者汇总判断”。
+- 如果当前环境支持子 Agent，且层级之间可以独立审查，优先按“一层一个子 Agent”并行执行；如果层级数量很少、上下文不足或没有可用子 Agent，则由主 Agent 顺序执行，但仍保持逐层隔离。
+- 每个子 Agent 或单层审查单元只判断自己负责的层级，不跨层扩展结论；发现跨层问题时可以记录为“需交由协调者汇总判断”。
 - 协调者汇总时不得简单拼接各层报告，应消除重复问题、统一风险等级、保留证据位置，并指出不同层级之间互相印证或互相冲突的地方。
 - 若不同层级对同一问题给出不同判断，协调者应基于证据范围和盲审风险重新裁定，并在最终报告中说明取舍理由。
 
@@ -79,7 +79,7 @@ description: Review one layer, or explicitly requested multiple layers, of a doc
 需要时保留各层的完整检查表。
 ```
 
-## Output Format
+## 输出格式
 
 使用以下结构：
 
@@ -302,7 +302,7 @@ Lx：审查名称
 - 图、表、公式、算法的命名风格是否统一。
 - 是否存在大段重复背景。
 - 是否存在章节语气、叙述粒度或术语风格明显不同。
-- 是否有“论文改写痕迹”，如保留小论文的独立 introduction 结构。
+- 是否有“论文改写痕迹”，如保留小论文的独立引言结构。
 
 修改方向：
 - 建立术语表和贡献表述表。

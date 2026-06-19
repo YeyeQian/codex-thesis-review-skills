@@ -1,15 +1,15 @@
 ---
 name: review-phd-thesis-blind
-description: Use when Codex needs to simulate doctoral dissertation blind review, pre-review, internal quality review, defense qualification judgment, 分项评分, 学术水平评价, 答辩建议, or 存在异议判定 for PhD theses in computer architecture, chip architecture, digital IC design, integrated circuit/system design, hardware accelerators, processors, RISC-V, EDA-adjacent hardware research, or related engineering fields.
+description: 用于模拟博士学位论文盲审、预评审、内部质量审查、答辩资格判断、分项评分、学术水平评价、答辩建议或存在异议判定。适用于计算机体系结构、芯片架构、数字集成电路设计、集成电路/系统设计、硬件加速器、处理器、RISC-V、EDA 相关硬件研究或相近工程领域的博士论文。
 ---
 
 # 博士论文模拟盲审评审
 
-## Core Principle
+## 核心原则
 
 以模拟外审专家身份判断论文是否达到博士学位论文要求。先基于证据完成五项分项评价，再给出学术水平、答辩建议和异议判定；不要只润色文字或只给总体印象。
 
-## Required References
+## 必读参考文件
 
 每次正式评审前必须读取：
 
@@ -18,7 +18,7 @@ description: Use when Codex needs to simulate doctoral dissertation blind review
 
 若只做局部预检或用户明确要求短评，可只读取 `references/review-rubric.md`，但仍要说明输入范围有限。
 
-## Review Workflow
+## 审查流程
 
 1. 确认评审材料：论文题目、学科专业、研究方向、评审对象、版本日期、论文全文或章节文件、参考文献/编译日志/成果清单等可用证据。
 2. 建立论文地图：概括总问题、分问题、技术路线、各章贡献、实验/实现证据和结论边界。
@@ -27,7 +27,7 @@ description: Use when Codex needs to simulate doctoral dissertation blind review
 5. 生成报告：遵循 `references/report-template.md`。用中文学术表达，语气接近计算机体系结构、芯片架构、数字芯片设计领域博士生导师的盲审意见。
 6. 自检一致性：若报告保存为 Markdown 文件，运行 `scripts/check_review_consistency.py <report.md>` 检查分数、等级、答辩建议和异议判定是否一致。
 
-## Domain Lens
+## 领域审查视角
 
 面向计算机体系结构、芯片架构和数字芯片设计方向时，重点检查：
 
@@ -37,7 +37,7 @@ description: Use when Codex needs to simulate doctoral dissertation blind review
 - 是否明确作者本人贡献，避免把平台、工具链、标准 IP 或合作团队成果笼统写成论文贡献。
 - 是否谨慎处理“领先”“安全”“通用”“全标准”“低功耗”等强结论，要求有数据、威胁模型、工艺条件、工作负载和对比口径支撑。
 
-## Evidence Discipline
+## 证据纪律
 
 - 对每项判断尽量指向章节、图表、公式、算法、日志、实验表或论文文本位置。
 - 资料不足时写明“无法充分判断”的范围，不要臆测。
@@ -45,11 +45,11 @@ description: Use when Codex needs to simulate doctoral dissertation blind review
 - 盲审匿名备注：论文中允许陈述博士在读期间论文发表成果、专利、流片或竞赛奖励等学术成果；只要不暴露作者姓名和具体论文名称等可直接识别身份的信息，不应将这类成果陈述本身判定为破坏盲审匿名要求。
 - 不能用平均分抵消硬伤。只要触发异议条件，最终结论必须体现重新送审或不能直接答辩的处理规则。
 
-## Output Expectations
+## 输出要求
 
 报告应包含：基本信息、总体结论、论文概述、五项分项评价、评分汇总、学术水平评价、答辩资格建议、异议判定、主要不足与修改建议、最终评审意见。若用户要求“详细评审结果”，采用完整模板；若要求“快速预评审”，保留五项评分和硬规则结论。
 
-## Common Mistakes
+## 常见错误
 
 - 只写“论文质量较好，可以答辩”，没有分项证据。
 - 分项低于 60 分却仍判定“不存在异议”。

@@ -1,131 +1,131 @@
-# Codex Thesis Review Skills
+# Codex 硕博论文审核 Skill
 
-Two Codex skills for reviewing master's and doctoral theses before submission, defense, or blind review. The current workflows are primarily designed around doctoral dissertations, and can be adapted to master's thesis review by applying a lower threshold for research depth and contribution scale. The skills are written primarily for Chinese academic writing scenarios, with an emphasis on dissertation integrity, blind-review readiness, evidence-based critique, and structured revision guidance.
+本仓库包含两个用于硕士、博士学位论文审核的 Codex Skill（技能），可用于送审前、答辩前或模拟盲审场景。当前工作流主要围绕博士学位论文设计；用于硕士论文时，可根据硕士学位论文要求适当降低对研究深度、创新尺度和工作量的判断阈值。这两个 Skill 主要面向中文学术写作场景，强调论文整体性、盲审准备度、证据化审查和结构化修改建议。
 
-## Included Skills
+## 包含的 Skill
 
 ### `review-thesis-integrity`
 
-`review-thesis-integrity` is a layered integrity-review skill for doctoral dissertations. It is intended for pre-blind-review checks where the main concern is whether the thesis reads as one coherent dissertation rather than a collection of loosely connected papers.
+`review-thesis-integrity` 是一个分层论文整体性审查 Skill，适合在盲审前检查学位论文是否像一部统一的学位论文，而不是若干篇小论文或若干章节的简单拼接。
 
-It supports single-layer or explicitly requested multi-layer reviews, including:
+它支持单层审查，也支持用户明确要求时的多层审查，覆盖内容包括：
 
-- dissertation-level coherence and book-like completeness;
-- main research thread and chapter-to-chapter progression;
-- abstract, introduction, literature review, chapter positioning, innovation claims, and conclusion;
-- contribution-evidence closure;
-- terminology, concept, figure/table, and expression consistency;
-- cross-chapter metric consistency.
+- 论文成书性与整体完整性；
+- 主线统摄与章间递进；
+- 摘要、绪论、研究现状、章节定位、创新点和总结章；
+- 贡献与证据之间的闭环关系；
+- 术语、概念、图表、表达风格和章节口径一致性；
+- 跨章节核心指标一致性。
 
-Typical prompts:
+典型提示词：
 
 ```text
-Use $review-thesis-integrity to review the introduction and check whether it can support the whole dissertation.
+使用 $review-thesis-integrity 审查我的绪论，判断它是否能够支撑整篇论文的主线。
 ```
 
 ```text
-Use $review-thesis-integrity to run a multi-layer pre-blind-review check on my thesis outline and chapter summaries.
+使用 $review-thesis-integrity 对我的论文大纲和各章概要做一次盲审前多层整体性检查。
 ```
 
 ### `review-phd-thesis-blind`
 
-`review-phd-thesis-blind` simulates a formal doctoral dissertation blind-review process. It is designed for more judgment-heavy review tasks where Codex should behave like an external reviewer and produce a structured evaluation with scores, academic-level judgment, defense recommendation, and objection determination.
+`review-phd-thesis-blind` 用于模拟正式博士学位论文盲审。它适合更偏“评审结论”的任务，让 Codex 以外审专家视角生成包含分项评分、学术水平评价、答辩建议和异议判定的结构化评审报告。
 
-It includes:
+它包含：
 
-- a five-item review rubric for topic selection, literature review, research outcomes, research capability, and thesis standards;
-- hard rules for objection determination;
-- a formal report template;
-- a consistency-check script for review reports saved as Markdown;
-- an additional review lens for computer architecture, chip architecture, digital IC design, integrated circuit/system design, RISC-V, hardware accelerators, processors, and EDA-adjacent hardware research.
+- 论文选题、文献综述、研究成果、科研水平、论文规范五项评分细则；
+- 异议判定硬规则；
+- 正式评审报告模板；
+- Markdown 评审报告一致性检查脚本；
+- 面向计算机体系结构、芯片架构、数字集成电路设计、集成电路/系统设计、RISC-V、硬件加速器、处理器和 EDA 相关硬件研究方向的附加审查视角。
 
-Typical prompts:
+典型提示词：
 
 ```text
-Use $review-phd-thesis-blind to produce a simulated blind-review report for this doctoral dissertation.
+使用 $review-phd-thesis-blind 为这篇博士论文生成一份模拟盲审评审报告。
 ```
 
 ```text
-Use $review-phd-thesis-blind to judge whether this dissertation can enter defense after minor revision.
+使用 $review-phd-thesis-blind 判断这篇论文是否可以略作修改后进入答辩。
 ```
 
-## Anonymized Example Outputs
+## 匿名化输出案例
 
-The following summaries are based on anonymized real-use outputs. Thesis title, institution, author identity, chapter-specific technical content, algorithm names, project names, and detailed metrics have been removed or generalized.
+以下示例基于真实使用结果做了匿名化处理。论文题目、学校信息、作者身份、章节级技术内容、算法名、项目名和详细指标均已删除或泛化。
 
-### Example 1: Full-Layer Integrity Review
+### 案例一：全层级整体性审查
 
-Input: a near-final doctoral dissertation draft and a request for a full pre-blind-review integrity check.
+输入：一份接近定稿的博士论文草稿，以及一次盲审前全层级整体性审查请求。
 
-Skill used: `review-thesis-integrity`
+使用的 Skill：`review-thesis-integrity`
 
-Output shape:
+输出形态：
 
-- a whole-thesis conclusion before the detailed review;
-- a risk matrix covering L0-L11 review layers;
-- separate diagnosis for book-like completeness, main research thread, abstract, introduction, literature review, chapter positioning, chapter progression, innovation claims, evidence closure, conclusion, expression consistency, and cross-chapter metric consistency;
-- a prioritized revision list for blind-review readiness;
-- suggested tables for mapping foundational content to chapters, mapping literature gaps to thesis contributions, linking contributions to evidence, and tracking metric sources.
+- 先给出全文层面的总体结论；
+- 给出覆盖 L0-L11 的风险矩阵；
+- 分别诊断成书性、主线统摄、摘要入口、绪论入口、综述层、分章定位、章间递进、创新辨识、证据闭环、总结升维、成文一致和跨章节指标一致性；
+- 给出盲审前优先修改清单；
+- 建议补充基础内容与章节映射表、研究现状与本文工作映射表、贡献与证据闭环索引表、核心指标与来源台账。
 
-An anonymized result summary:
+匿名化结果摘要：
 
 ```text
-Overall judgment: basically passes the pre-blind-review integrity check, but should be revised according to the priority list before submission.
+总体判断：基本通过盲审前整体性审查，但应按优先级清单完成针对性修改后再送审。
 
-Main risks found:
-- Some achievement descriptions should be checked against blind-review anonymity requirements.
-- Some foundational material is broad and should be explicitly mapped to later chapters.
-- The literature review is problem-oriented, but some parts can better show what prior work solved, what it did not solve, and how the thesis responds.
-- Contribution-evidence closure is mostly sufficient, but a global contribution-to-evidence index would reduce reviewer search cost.
-- A small number of cross-chapter metrics need clearer derivation, baseline, or wording.
-- Terminology, spacing, abbreviations, and formal-version wording need one final consistency pass.
+主要风险：
+- 成果陈述需要核查盲审匿名边界。
+- 部分基础内容覆盖较宽，需要显式说明其服务于后文哪些章节。
+- 研究现状已经具备问题导向，但部分位置可进一步说明已有工作解决了什么、尚缺什么以及本文如何回应。
+- 贡献与实验证据整体较充分，但建议增加全局贡献-证据索引，降低评审查找成本。
+- 少数跨章节核心指标需要补充推导口径、比较基线或更审慎的表述。
+- 术语、空格、缩写和正式稿措辞需要做最后一次一致性扫描。
 
-Final delivery judgment: structurally ready for blind review after targeted revisions.
+最终送审判断：完成针对性修改后，结构上可以进入盲审。
 ```
 
-This example shows how the integrity-review skill is used before final polishing. It does not primarily score the thesis; it identifies structural risks that may affect how reviewers perceive coherence, contribution closure, and readiness.
+这个案例体现了整体性审查 Skill 的用途：它不是主要给论文打分，而是在最终文字润色前识别可能影响评审理解的结构风险、主线风险和证据闭环风险。
 
-### Example 2: Simulated Blind-Review Report
+### 案例二：模拟盲审评审报告
 
-Input: a doctoral dissertation draft and a request to simulate an external blind-review report from an engineering faculty perspective.
+输入：一份博士论文草稿，以及一次从工科导师视角模拟外审评审的请求。
 
-Skill used: `review-phd-thesis-blind`
+使用的 Skill：`review-phd-thesis-blind`
 
-Output shape:
+输出形态：
 
-- thesis basic information and review scope;
-- overall review conclusion;
-- thesis overview;
-- five independent sub-scores: topic selection, literature review, research outcomes, research capability, and thesis standards;
-- academic-level judgment;
-- defense recommendation;
-- objection determination using hard rules;
-- major deficiencies and revision suggestions;
-- final formal review opinion.
+- 论文基本信息与评审范围；
+- 总体评审结论；
+- 论文总体概述；
+- 论文选题、文献综述、研究成果、科研水平、论文规范五项独立评分；
+- 学术水平评价；
+- 答辩资格建议；
+- 基于硬规则的异议判定；
+- 主要不足与修改建议；
+- 最终正式评审意见。
 
-An anonymized result summary:
+匿名化结果摘要：
 
 ```text
-Academic level: B. Good
-Defense recommendation: B. Basically agree; allow defense after minor revision
-Objection: No
-Re-review required: No
-Defense eligibility: Eligible after minor revision
+学术水平评价：B. 良好
+答辩建议：B. 基本同意，略作修改后答辩
+是否存在异议：否
+是否需要重新送审：否
+答辩资格：略作修改后可以进入答辩程序
 
-Sub-score pattern:
-- Topic selection: high 80s
-- Literature review: low 80s
-- Research outcomes: mid 80s
-- Research capability: high 80s
-- Thesis standards: high 70s
+分项评分形态：
+- 论文选题：80 分以上偏高
+- 文献综述：80 分以上偏低
+- 研究成果：80 分以上中段
+- 科研水平：80 分以上偏高
+- 论文规范：70 分以上偏高
 
-Main revision type:
-The thesis meets doctoral dissertation requirements overall. Remaining issues are mainly minor revisions, such as tightening concept boundaries, strengthening selected parts of the literature review, making conclusion boundaries more cautious, unifying terminology, and fixing reference or formatting warnings.
+主要修改类型：
+论文整体达到博士学位论文要求。剩余问题主要属于小修范围，包括收紧概念边界、补强局部综述、使结论限定条件更严谨、统一术语、修复参考文献或排版警告等。
 ```
 
-This example shows how the simulated blind-review skill converts textual evidence into a formal review decision. It is stricter than a polishing checklist because it must keep scores, academic level, defense recommendation, and objection judgment mutually consistent.
+这个案例体现了模拟盲审 Skill 的用途：它会把论文文本证据转化为正式评审判断，并要求分项评分、学术水平、答辩建议和异议判定之间保持一致。
 
-## Repository Layout
+## 仓库结构
 
 ```text
 .
@@ -142,9 +142,9 @@ This example shows how the simulated blind-review skill converts textual evidenc
         └── agents/openai.yaml
 ```
 
-## Installation
+## 安装方式
 
-Clone this repository and copy the skill folders into your Codex skills directory:
+克隆本仓库，并将两个 Skill 目录复制到 Codex 的 Skill 目录中：
 
 ```bash
 git clone https://github.com/YeyeQian/codex-thesis-review-skills.git
@@ -153,14 +153,14 @@ cp -R codex-thesis-review-skills/skills/review-thesis-integrity ~/.codex/skills/
 cp -R codex-thesis-review-skills/skills/review-phd-thesis-blind ~/.codex/skills/
 ```
 
-Restart Codex if the skills are not discovered immediately.
+如果 Codex 没有立即发现新 Skill，请重启 Codex。
 
-## Notes
+## 说明
 
-- These skills provide structured review workflows and checklists. They do not replace a formal university review process or human expert judgment.
-- The blind-review skill is intentionally strict about evidence, scoring consistency, and objection rules.
-- The integrity-review skill is intended to find structural and argumentative risks before polishing the text.
+- 这些 Skill 提供结构化审核流程和检查清单，不能替代正式学校评审流程或真人专家判断。
+- 模拟盲审 Skill 对证据、评分一致性和异议判定规则要求较严格。
+- 整体性审查 Skill 主要用于在文本润色前发现论文结构和论证风险。
 
-## License
+## 许可证
 
-MIT License.
+MIT 许可证。

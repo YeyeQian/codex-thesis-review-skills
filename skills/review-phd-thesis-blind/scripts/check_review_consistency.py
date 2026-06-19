@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Check hard-rule consistency in a doctoral thesis review report.
+"""检查博士论文评审报告中的硬规则一致性。
 
-Usage:
+用法：
   python check_review_consistency.py report.md
   cat report.md | python check_review_consistency.py -
 """
@@ -70,7 +70,7 @@ def reported_objection(text: str) -> str | None:
 
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
-        print("Usage: python check_review_consistency.py <report.md|->", file=sys.stderr)
+        print("用法：python check_review_consistency.py <report.md|->", file=sys.stderr)
         return 2
 
     text = read_text(argv[1])
@@ -83,30 +83,30 @@ def main(argv: list[str]) -> int:
 
     issues: list[str] = []
     if len(scores) < 5:
-        issues.append(f"Only found {len(scores)} score entries; expected at least 5.")
+        issues.append(f"仅找到 {len(scores)} 个分数条目；预期至少 5 个。")
     if reported is None:
-        issues.append("Could not find final '是否存在异议：是/否'.")
+        issues.append("未找到最终的“是否存在异议：是/否”。")
     else:
         reported_bool = reported == "是"
         if reported_bool != expected_objection:
             issues.append(
-                "Objection mismatch: hard rules expect "
-                f"{'是' if expected_objection else '否'}, report says {reported}."
+                "异议判定不一致：硬规则预期为"
+                f"{'是' if expected_objection else '否'}，报告写为{reported}。"
             )
 
-    print("Scores found:", ", ".join(map(str, scores)) if scores else "none")
-    print("Academic level D:", "yes" if level_d else "no")
-    print("Defense suggestion C/D:", "yes" if defense_c_or_d else "no")
-    print("Expected objection:", "是" if expected_objection else "否")
-    print("Reported objection:", reported or "not found")
+    print("找到的分数：", ", ".join(map(str, scores)) if scores else "无")
+    print("学术水平是否为 D：", "是" if level_d else "否")
+    print("答辩建议是否为 C/D：", "是" if defense_c_or_d else "否")
+    print("硬规则预期异议：", "是" if expected_objection else "否")
+    print("报告中的异议：", reported or "未找到")
 
     if issues:
-        print("\nIssues:")
+        print("\n发现的问题：")
         for issue in issues:
             print(f"- {issue}")
         return 1
 
-    print("\nConsistency check passed.")
+    print("\n一致性检查通过。")
     return 0
 
 
